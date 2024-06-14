@@ -1,5 +1,5 @@
 // import Navbar from "../components/layouts/Navbar.jsx";
-import HistogramChart from '../components/fragments/HistogramChart.jsx'
+import HistogramChart from "../components/layouts/HistogramChart.jsx"
 import Card from "../components/Elements/Card";
 import Option from "../components/Elements/Option";
 
