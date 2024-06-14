@@ -1,5 +1,7 @@
 import Navbar from "../components/layouts/Navbar.jsx";
 import HistogramChart from '../components/fragments/HistogramChart.jsx'
+import Card from "../components/Elements/Card";
+import Option from "../components/Elements/Option";
 
 const Home = () => {
   const data = {
@@ -10,6 +12,11 @@ const Home = () => {
   return(
       <>
         <Navbar/>
+          <Card.Header tittle="Konversi Citra Ke Histogram" description="Pilih Citra Yang Ingin Di Konversi">
+              <Option classname="btn-block bg-success hover:bg-success" href="/rgb">Citra RGB</Option>
+              <Option classname="btn-block bg-success hover:bg-success" href="/biner">Citra Biner</Option>
+              <Option classname="btn-block bg-success hover:bg-success" href="/gray">Citra Grayscale</Option>
+          </Card.Header>
         <div className={'card w-200 h-auto bg-amber-300'}>
             <HistogramChart data={data}/>
         </div>
@@ -18,5 +25,14 @@ const Home = () => {
 
   )
 }
+
+
+const Home = () => {
+  return (
+      <Card>
+
+    </Card>
+  );
+};
 
 export default Home;
