@@ -2,8 +2,13 @@ import Card from "../components/Elements/Card";
 import InsertImage from "../components/Elements/InsertImage";
 import Modal from "../components/Elements/Modal";
 import Button from "../components/Elements/Button";
+import HistogramChart from "../components/fragments/HistogramChart";
 
 const Rgb = () => {
+  const data = {
+    labels: ['Bin 1', 'Bin 2', 'Bin 3', 'Bin 4'],
+    values: [12, 19, 3, 5],
+  };
     return (
         <Card>
         <Card.Header tittle="Citra RGB" description="Konversi Citra RGB Ke Histogram">
@@ -28,7 +33,9 @@ const Rgb = () => {
         </Button>
       </div>
         <Modal id="gray">
-        <Modal.Body tittle="Histogram Citra RGB">Click the button below to close</Modal.Body>
+        <Modal.Body tittle="Histogram Citra RGB">
+          <HistogramChart data={data} />
+        </Modal.Body>
         </Modal>
         </Card.Header>
       </Card>

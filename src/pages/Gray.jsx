@@ -2,9 +2,14 @@ import Button from "../components/Elements/Button";
 import Card from "../components/Elements/Card";
 import InsertImage from "../components/Elements/InsertImage";
 import Modal from "../components/Elements/Modal";
+import HistogramChart from "../components/fragments/HistogramChart";
 // import Option from "../components/Elements/Option";
 
 const Gray = () => {
+  const data = {
+    labels: ['Bin 1', 'Bin 2', 'Bin 3', 'Bin 4'],
+    values: [12, 19, 3, 5],
+  };
   return (
     <Card>
       <Card.Header
@@ -32,7 +37,10 @@ const Gray = () => {
         </Button>
       </div>
         <Modal id="gray">
-          <Modal.Body tittle="Histogram Citra Grayscale">Click the button below to close</Modal.Body>
+          <Modal.Body tittle="Histogram Citra Grayscale">
+            <HistogramChart data={data} />
+          </Modal.Body>
+          
         </Modal>
       </Card.Header>
     </Card>
