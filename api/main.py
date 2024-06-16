@@ -1,6 +1,8 @@
 import os
 import uuid
 import datetime
+from PIL import Image
+import numpy as np
 from flask import Flask, request, jsonify
 from werkzeug.utils import secure_filename
 
@@ -37,10 +39,18 @@ def rgb():
         NOW = datetime.datetime.now()
         new_filename = file.filename.rsplit('.',1)[0] + '_' + NOW.strftime("%d_%m_%Y_%H_%M_%S") + '.' + file.filename.rsplit('.',1)[1]
         file.save(os.path.join(app.config['UPLOAD_FOLDER'], new_filename))
+        path_file = app.config['UPLOAD_FOLDER'] + '/' + new_filename
+        img = Image.open(path_file)
+        histogram = img.histogram()
+        pixel = [i for i in range(256)] #define values of pixel
         return jsonify({
             'message' : 'berhasil',
             'data': {
-                'image': new_filename
+                'image': new_filename,
+                 'histogram' : {
+                    'labels' : pixel,
+                    'values' : histogram
+                 }
             }
         })
 
