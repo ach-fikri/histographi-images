@@ -12,8 +12,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route index element={<Home />} />
-        <Route path="rgb" element={<Rgb/>} />
-        <Route path="gray" element={<Gray />} />
+        <Route path="gray" element={<Gray/>} />
+        <Route path="rgb" element={<Rgb />} />
         <Route path="biner" element={<Biner />} />
       </Routes>
     </BrowserRouter>

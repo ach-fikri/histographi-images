@@ -4,10 +4,16 @@ import Card from "../components/Elements/Card";
 import Option from "../components/Elements/Option";
 
 const Home = () => {
-  const data = {
-    labels: ['Bin 1', 'Bin 2', 'Bin 3', 'Bin 4'],
-    values: [12, 19, 3, 5],
-  };
+      const data = {
+        labels: ['Bin 1', 'Bin 2', 'Bin 3', 'Bin 4'],
+        datasets:[
+            {
+                label: 'Histogram',
+                data: [12, 19, 3, 5],
+                backgroundColor: 'rgba(75, 192, 192, 0.6)'
+            }
+        ]
+    };
 
   return(
       <>
