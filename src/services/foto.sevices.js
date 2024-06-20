@@ -9,6 +9,26 @@ const gray = async (image) =>{
     return data
 }
 
+const rgb = async (image)=>{
+    const data = await axios.post('http://127.0.0.1:3000/rgb', image, {
+        headers:{
+            "Content-Type": 'multipart/form-data'
+        }
+    })
+    return data;
+}
+
+const biner = async (image) =>{
+    const data = await axios.post('http://127.0.0.1:3000/biner', image, {
+        headers:{
+            "Content-Type": 'multipart/form-data'
+        }
+    })
+    return data;
+}
+
 export {
-    gray
+    gray,
+    rgb,
+    biner
 }

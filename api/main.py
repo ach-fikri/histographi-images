@@ -25,6 +25,24 @@ def calculate_histogram_gray(image):
     return histogram.tolist()
     return histogram
 
+def calculate_histogram(image):
+    image_array = np.array(image)
+    histograms = {
+        'red': np.histogram(image_array[:, :, 0], bins=256, range=(0, 256))[0].tolist(),
+        'green': np.histogram(image_array[:, :, 1], bins=256, range=(0, 256))[0].tolist(),
+        'blue': np.histogram(image_array[:, :, 2], bins=256, range=(0, 256))[0].tolist(),
+    }
+    return histograms
+
+
+def calculate_binary_histogram(image):
+      image = image.convert('L')
+      # Binarize the image
+      image = image.point(lambda x: 0 if x < 128 else 255, '1')
+      image_array = np.array(image)
+      histogram, _ = np.histogram(image_array, bins=2, range=(0, 256))
+      return histogram.tolist()
+
 
 @app.route('/', methods=['GET'])
 def hello():
@@ -51,14 +69,13 @@ def gray():
         path_file = app.config['UPLOAD_FOLDER'] + '/' + new_filename
         img = Image.open(path_file)
         histogram = calculate_histogram_gray(img)
-#         pixel = [i for i in range(256)] #define values of pixel
+#         print(histogram)
         return jsonify({
             'message' : 'berhasil',
             'data': {
                 'image': new_filename,
                  'histogram' : {
-#                     'labels' : pixel,
-                    'values' : histogram
+                  'values' : histogram
                  }
             }
         })
@@ -82,8 +99,46 @@ def rgb() :
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], new_filename))
             path_file = app.config['UPLOAD_FOLDER'] + '/' + new_filename
             img = Image.open(path_file)
-# @app.route('/grayscale')
+            histogram = calculate_histogram(img)
+            return jsonify({
+                 'message' : 'berhasil',
+                 'data': {
+                     'image': new_filename,
+                      'histogram' : {
+                         'values' : histogram
+                      }
+                 }
+            })
 
+@app.route('/biner', methods=['POST'])
+def biner() :
+     if 'file' not in request.files:
+                 return jsonify({
+                    "message": "file tidak ada"
+                 }, 404)
+     file = request.files['file']
+     if file.filename == '':
+                return jsonify({
+                "message": "No selected file"
+                })
+     if file and allowed_file(file.filename):
+                Now = datetime.datetime.now()
+                filename = secure_filename(file.filename)
+                NOW = datetime.datetime.now()
+                new_filename = file.filename.rsplit('.',1)[0] + '_' + NOW.strftime("%d_%m_%Y_%H_%M_%S") + '.' + file.filename.rsplit('.',1)[1]
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], new_filename))
+                path_file = app.config['UPLOAD_FOLDER'] + '/' + new_filename
+                img = Image.open(path_file)
+                histogram = calculate_binary_histogram(img)
+                return jsonify({
+                                 'message' : 'berhasil',
+                                 'data': {
+                                     'image': new_filename,
+                                      'histogram' : {
+                                         'values' : histogram
+                                      }
+                                 }
+                            })
 
 
 if __name__ == '__main__':
