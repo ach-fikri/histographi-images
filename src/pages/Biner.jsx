@@ -4,7 +4,6 @@ import Modal from "../components/Elements/Modal";
 import Button from "../components/Elements/Button";
 import HistogramChart from "../components/layouts/HistogramChart.jsx";
 
-
 const Biner = () => {
     const data = {
         labels: ['Bin 1', 'Bin 2', 'Bin 3', 'Bin 4'],

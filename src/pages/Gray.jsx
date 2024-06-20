@@ -58,13 +58,14 @@ const Gray = () => {
             setImage('')
         }
     }, [isModalOpen])
-
-
-    return (
-        <Card>
-        <Card.Header tittle="Citra RGB" description="Konversi Citra RGB Ke Histogram">
-          <InsertImage image={image} onChange={handleUpload}/>
-          <div className="card-actions justify-center mt-4 gap-8">
+  return (
+    <Card>
+      <Card.Header
+        tittle="Citra Grayscale"
+        description="Konversi Citra Grayscale Ke Histogram"
+      >
+        <InsertImage image={image} onChange={handleUpload}/>
+        <div className="card-actions justify-center mt-4 gap-8">
         <a href="/">
           <Button
             classname="btn btn-error text-primary-content px-8 py-4"
@@ -87,6 +88,7 @@ const Gray = () => {
         <Modal.Body tittle="Histogram Citra GrayScale" closeModal={closeModal}>
             <HistogramChart data={data}/>
         </Modal.Body>
+
         </Modal>
         </Card.Header>
       </Card>

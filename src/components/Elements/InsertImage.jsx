@@ -1,6 +1,7 @@
 const InsertImage = ({image, ...props}) => {
   return (
-    <><div className="flex justify-center w-full">
+    <>
+      <div className="flex justify-center w-full">
       {image ? image.name : <div className="max-w-xl">
         <label
             className="flex justify-center w-full h-32 px-4 transition bg-white border-2 border-gray-300 border-dashed rounded-md appearance-none cursor-pointer hover:border-gray-400 focus:outline-none">
