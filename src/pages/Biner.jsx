@@ -45,17 +45,20 @@ const Biner = () => {
             setData(
                 {
                     labels: ['0 (Black)', '255 (White)'],
-                    datasets:[
+                    datasets: [
                         {
                             label: 'Frequency',
                             data: his,
                             backgroundColor: ['rgba(0, 0, 0, 0.6)', 'rgba(255, 255, 255, 0.6)'],
+                            borderColor: ['rgba(0, 0, 0, 1)', 'rgba(255, 255, 255, 1)'],
+                            borderWidth: 1,
                         },
-                    ]
+                    ],
                 }
             )
         }
     }, [his])
+
 
 
     useEffect(()=>{

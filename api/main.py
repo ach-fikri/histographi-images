@@ -36,12 +36,12 @@ def calculate_histogram(image):
 
 
 def calculate_binary_histogram(image):
-      image = image.convert('L')
-      # Binarize the image
-      image = image.point(lambda x: 0 if x < 128 else 255, '1')
-      image_array = np.array(image)
-      histogram, _ = np.histogram(image_array, bins=2, range=(0, 256))
-      return histogram.tolist()
+    image = image.convert('L')
+    # Binarize the image
+    image = image.point(lambda x: 0 if x < 128 else 255, '1')
+    image_array = np.array(image)
+    histogram, _ = np.histogram(image_array, bins=2, range=(0, 256))
+    return histogram.tolist()
 
 
 @app.route('/', methods=['GET'])
